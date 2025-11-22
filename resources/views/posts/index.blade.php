@@ -21,8 +21,8 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/posts">All Posts</a>
                     </li>
+                    <a class="nav-link active" aria-current="page" href={{ route('posts.index') }}>All Posts</a>
 
             </div>
     </nav>
@@ -47,7 +47,7 @@
                         <td>{{ $post['title'] }}</td>
                         <td>{{ $post['posted_by'] }}</td>
                         <td>{{ $post['created_at'] }}</td>
-                        <td><a href="/posts/{{ $post['id'] }}" class="btn btn-info">View</a>
+                        <td><a href="{{ route('posts.show', ['id' => $post['id']]) }}" class="btn btn-info">View</a>
                             <a href="#" class="btn btn-primary">Edit</a>
                             <a href="#" class="btn btn-danger">Delete</a>
                         </td>
