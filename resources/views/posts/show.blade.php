@@ -35,7 +35,7 @@
 
         </div>
         <div class="card-body">
-            <h5 class="card-title">Title: PHP</h5>
+            <h5 class="card-title">Title: {{ $post['title'] }}</h5>
             <p class="card-text">Description: This is Description</p>
         </div>
     </div>
@@ -47,9 +47,8 @@
 
         </div>
         <div class="card-body">
-            <h5 class="card-title">Name: John Doe</h5>
-            <p class="card-text">Email: john.doe@example.com</p>
-            <p class="card-text">Tuesday 25th of December 1975 2:15:16 PM</p>
+            <h5 class="card-title">Name: {{ $post['posted_by'] }}</h5>
+            <p class="card-text">Created at: {{ $post['created_at'] }}</p>
         </div>
     </div>
     <script src="https://unpkg.com/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
