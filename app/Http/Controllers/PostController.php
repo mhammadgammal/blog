@@ -31,4 +31,22 @@ class PostController extends Controller
         // Logic to retrieve a single post by its ID
         return view('posts.show', ['post' => $allPosts[$id - 1]]);
     }
+
+    public function create()
+    {
+        return view('posts.create');
+    }
+
+    public function store()
+    {
+        // Logic to store a new post
+        // get data from request, validate, save to database, etc.
+        $request = request();
+        $title = $request->input('title');
+        $description = $request->input('description');
+        $posted_by = $request->input('post_creator');
+        // dd("Storing post: $title, $description, by $posted_by");
+        // redirect to home
+        return to_route('posts.index');
+    }
 }
