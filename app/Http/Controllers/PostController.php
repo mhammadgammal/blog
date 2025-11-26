@@ -49,4 +49,20 @@ class PostController extends Controller
         // redirect to home
         return to_route('posts.index');
     }
+
+    public function edit($id)
+    {
+        $allPosts = [
+            ['id' => 1, 'title' => 'PHP', 'posted_by' => 'John Doe', 'created_at' => '2024-01-01'],
+            ['id' => 2, 'title' => 'JavaScript', 'posted_by' => 'Ahmed', 'created_at' => '2024-01-02'],
+            ['id' => 3, 'title' => 'HTML', 'posted_by' => 'Mohamed', 'created_at' => '2024-01-05'],
+            ['id' => 4, 'title' => 'CSS', 'posted_by' => 'Alice', 'created_at' => '2024-02-10'],
+        ];
+        return view('posts.edit', ['post' => $allPosts[$id - 1]]);
+    }
+    public function update($id)
+    {
+        echo "Updating post with ID: $id";
+        return to_route('posts.index');
+    }
 }
