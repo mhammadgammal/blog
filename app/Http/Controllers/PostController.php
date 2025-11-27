@@ -65,4 +65,8 @@ class PostController extends Controller
         echo "Updating post with ID: $id";
         return to_route('posts.index');
     }
+    public function destroy($id)
+    {
+        return to_route('posts.index');
+    }
 }

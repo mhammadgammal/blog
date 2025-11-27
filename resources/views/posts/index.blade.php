@@ -24,7 +24,11 @@
                     <td>{{ $post['created_at'] }}</td>
                     <td><a href="{{ route('posts.show', ['id' => $post['id']]) }}" class="btn btn-info">View</a>
                         <a href="{{ route('posts.edit', ['id' => $post['id']]) }}" class="btn btn-primary">Edit</a>
-                        <a href="#" class="btn btn-danger">Delete</a>
+                        <form style="display:inline;" method="POST" action="{{ route('posts.destroy', [$post['id']]) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger delete-btn">Delete</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
@@ -32,3 +36,13 @@
         </tbody>
     </table>
 @endsection
+
+<script>
+document.querySelectorAll('.delete-btn').forEach(button => {
+    button.closest('form').addEventListener('submit', function(e) {
+        if (!confirm('Are you sure you want to delete this item?')) {
+            e.preventDefault();
+        }
+    });
+});
+</script>
