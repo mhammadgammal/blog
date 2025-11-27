@@ -18,13 +18,13 @@
         <tbody>
             @foreach ($posts as $post)
                 <tr>
-                    <th scope="row">{{ $post['id'] }}</th>
-                    <td>{{ $post['title'] }}</td>
-                    <td>{{ $post['posted_by'] }}</td>
-                    <td>{{ $post['created_at'] }}</td>
-                    <td><a href="{{ route('posts.show', ['id' => $post['id']]) }}" class="btn btn-info">View</a>
-                        <a href="{{ route('posts.edit', ['id' => $post['id']]) }}" class="btn btn-primary">Edit</a>
-                        <form style="display:inline;" method="POST" action="{{ route('posts.destroy', [$post['id']]) }}">
+                    <th scope="row">{{ $post->id }}</th>
+                    <td>{{ $post->title }}</td>
+                    <td>{{ $post->description }}</td>
+                    <td>{{ $post->created_at }}</td>
+                    <td><a href="{{ route('posts.show', ['id' => $post->id]) }}" class="btn btn-info">View</a>
+                        <a href="{{ route('posts.edit', ['id' => $post->id]) }}" class="btn btn-primary">Edit</a>
+                        <form style="display:inline;" method="POST" action="{{ route('posts.destroy', [$post->id]) }}">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger delete-btn">Delete</button>
@@ -38,11 +38,11 @@
 @endsection
 
 <script>
-document.querySelectorAll('.delete-btn').forEach(button => {
-    button.closest('form').addEventListener('submit', function(e) {
-        if (!confirm('Are you sure you want to delete this item?')) {
-            e.preventDefault();
-        }
+    document.querySelectorAll('.delete-btn').forEach(button => {
+        button.closest('form').addEventListener('submit', function(e) {
+            if (!confirm('Are you sure you want to delete this item?')) {
+                e.preventDefault();
+            }
+        });
     });
-});
 </script>
