@@ -12,6 +12,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
+        // dd($posts);
         return view('posts.index', ['posts' => $posts]);
     }
 
@@ -33,9 +34,15 @@ class PostController extends Controller
         // Logic to store a new post
         // get data from request, validate, save to database, etc.
         $request = request();
-        $title = $request->input('title');
-        $description = $request->input('description');
-        $posted_by = $request->input('post_creator');
+        // $post = new Post();
+        Post::create([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            
+        ]);
+        // $post->title = $request->input('title');
+        // $post->description = $request->input('description');
+        // $post->save();
         // dd("Storing post: $title, $description, by $posted_by");
         // redirect to home
         return to_route('posts.index');
