@@ -38,7 +38,7 @@ class PostController extends Controller
         Post::create([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
-            
+
         ]);
         // $post->title = $request->input('title');
         // $post->description = $request->input('description');
@@ -50,11 +50,17 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        return view('posts.edit', ['post' => $post]);
+        // get all users from db
+        $users = User::all();
+        return view('posts.edit', ['post' => $post, 'users' => $users]);
     }
     public function update(Post $post)
     {
-        echo "Updating post with ID: {$post->id}";
+        $request = request();
+        Post::where('id', $post->id)->update([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+        ]);
         return to_route('posts.index');
     }
     public function destroy($id)
