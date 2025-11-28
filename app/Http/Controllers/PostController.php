@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -15,16 +16,16 @@ class PostController extends Controller
     }
 
     // show a single post
-    public function show($id)
+    public function show(Post $post)
     {
-        $post = Post::find($id);
         // Logic to retrieve a single post by its ID
         return view('posts.show', ['post' => $post]);
     }
 
     public function create()
     {
-        return view('posts.create');
+        $user = User::all();
+        return view('posts.create', ['users' => $user]);
     }
 
     public function store()
@@ -40,19 +41,13 @@ class PostController extends Controller
         return to_route('posts.index');
     }
 
-    public function edit($id)
+    public function edit(Post $post)
     {
-        $allPosts = [
-            ['id' => 1, 'title' => 'PHP', 'posted_by' => 'John Doe', 'created_at' => '2024-01-01'],
-            ['id' => 2, 'title' => 'JavaScript', 'posted_by' => 'Ahmed', 'created_at' => '2024-01-02'],
-            ['id' => 3, 'title' => 'HTML', 'posted_by' => 'Mohamed', 'created_at' => '2024-01-05'],
-            ['id' => 4, 'title' => 'CSS', 'posted_by' => 'Alice', 'created_at' => '2024-02-10'],
-        ];
-        return view('posts.edit', ['post' => $allPosts[$id - 1]]);
+        return view('posts.edit', ['post' => $post]);
     }
-    public function update($id)
+    public function update(Post $post)
     {
-        echo "Updating post with ID: $id";
+        echo "Updating post with ID: {$post->id}";
         return to_route('posts.index');
     }
     public function destroy($id)
