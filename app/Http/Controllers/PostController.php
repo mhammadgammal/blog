@@ -38,7 +38,7 @@ class PostController extends Controller
         Post::create([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
-
+            'user_id' => $request->input('post_creator'),
         ]);
         // $post->title = $request->input('title');
         // $post->description = $request->input('description');

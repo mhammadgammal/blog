@@ -11,6 +11,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Title</th>
+                <th scope="col">Description</th>
                 <th scope="col">Posted By</th>
                 <th scope="col">Created At</th>
             </tr>
@@ -21,6 +22,7 @@
                     <th scope="row">{{ $post->id }}</th>
                     <td>{{ $post->title }}</td>
                     <td>{{ $post->description }}</td>
+                    <td>{{ $post->user? $post->user->name: '' }}</td>
                     <td>{{ $post->created_at }}</td>
                     <td><a href="{{ route('posts.show', ['post' => $post]) }}" class="btn btn-info">View</a>
                         <a href="{{ route('posts.edit', ['post' => $post]) }}" class="btn btn-primary">Edit</a>

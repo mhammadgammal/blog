@@ -18,12 +18,12 @@
     <div class="card" style="margin:10px;">
         <div class="card">
             <div class="card-header">
-                Post Info
+                Post Creator Info
             </div>
 
         </div>
         <div class="card-body">
-            <h5 class="card-title">Name: {{ $post->description }}</h5>
+            <h5 class="card-title">Name: {{ $post->user ? $post->user->name : '' }}</h5>
             <p class="card-text">Created at: {{ $post->created_at }}</p>
         </div>
     @endsection
